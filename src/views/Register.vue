@@ -19,51 +19,51 @@
           <div class="w-16 h-16 border-2 border-neon-magenta rotate-45 flex items-center justify-center mb-6">
             <span class="rotate-[-45deg] font-orbitron font-black text-2xl">F</span>
           </div>
-          <h1 class="text-3xl font-almarai font-black tracking-widest text-center uppercase">إنشاء هوية جديدة</h1>
+          <h1 class="text-3xl font-almarai font-black tracking-widest text-center uppercase">إنشاء حساب جديد</h1>
           <p class="text-white/40 font-almarai text-xs mt-2 uppercase tracking-widest">Football Tec Platform Enrollment</p>
         </div>
 
         <form @submit.prevent="handleRegister" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">Full Name / الاسم الكامل</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">الاسم الكامل</label>
             <input 
               v-model="name"
               type="text" 
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm text-right"
               placeholder="الاسم الثلاثي"
               required
             />
           </div>
 
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">Email / البريد الإلكتروني</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">البريد الإلكتروني</label>
             <input 
               v-model="email"
               type="email" 
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm"
-              placeholder="name@link.com"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm text-right"
+              placeholder="example@mail.com"
               required
             />
           </div>
 
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">User Role / دور المستخدم</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">نوع الحساب</label>
             <select 
               v-model="role"
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm text-right"
             >
-              <option value="PLAYER">لاعب (Player)</option>
-              <option value="COACH">مدرب (Coach)</option>
-              <option value="CLUB_ADMIN">نادي (Club)</option>
+              <option value="PLAYER">لاعب</option>
+              <option value="COACH">مدرب</option>
+              <option value="CLUB_ADMIN">نادي</option>
             </select>
           </div>
 
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">Security Key / الرمز السري</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">كلمة المرور</label>
             <input 
               v-model="password"
               type="password" 
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-magenta outline-none transition-all font-almarai text-sm text-right"
               placeholder="••••••••"
               required
             />
@@ -71,8 +71,8 @@
 
           <div class="md:col-span-2 pt-4">
             <CyberButton :loading="auth.loading" variant="magenta" :withLine="false" class="w-full py-4 text-sm group">
-              تأكيد التسجيل
-              <UserPlus class="w-4 h-4 ml-2 inline" />
+              تسجيل الحساب
+              <UserPlus class="w-4 h-4 mr-2 inline" />
             </CyberButton>
           </div>
         </form>

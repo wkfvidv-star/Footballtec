@@ -79,8 +79,11 @@ app.use((err, req, res, next) => {
 })
 
 const PORT = process.env.PORT || 5000
-httpServer.listen(PORT, () => {
-  logger.info(`[FOOTBALL-TEC-SaaS] System active on port ${PORT} // API v1`)
-})
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  httpServer.listen(PORT, () => {
+    logger.info(`[FOOTBALL-TEC-SaaS] System active on port ${PORT} // API v1`)
+  })
+}
 
+export default app
 export { prisma, io }

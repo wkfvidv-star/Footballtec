@@ -13,8 +13,8 @@
           <div class="w-16 h-16 border-2 border-neon-cyan rotate-45 flex items-center justify-center mb-6">
             <span class="rotate-[-45deg] font-orbitron font-black text-2xl">F</span>
           </div>
-          <h1 class="text-3xl font-almarai font-black tracking-widest text-center uppercase">الولوج للنظام</h1>
-          <p class="text-white/40 font-almarai text-xs mt-2 uppercase tracking-widest">Football Tec Authentication Node</p>
+          <h1 class="text-3xl font-almarai font-black tracking-widest text-center uppercase">تسجيل الدخول</h1>
+          <p class="text-white/40 font-almarai text-xs mt-2 uppercase tracking-widest">Football Tec Platform Access</p>
         </div>
 
         <div v-if="auth.error" class="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500 text-xs font-almarai text-center">
@@ -23,22 +23,22 @@
 
         <form @submit.prevent="handleLogin" class="space-y-6">
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">Email Address / العنوان الإلكتروني</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">البريد الإلكتروني</label>
             <input 
               v-model="email"
               type="email" 
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-cyan outline-none transition-all font-almarai text-sm"
-              placeholder="name@nexus.com"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-cyan outline-none transition-all font-almarai text-sm text-right"
+              placeholder="example@mail.com"
               required
             />
           </div>
 
           <div class="space-y-2">
-            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">Security Key / رمز الدخول</label>
+            <label class="text-[10px] uppercase font-orbitron tracking-widest text-white/60">كلمة المرور</label>
             <input 
               v-model="password"
               type="password" 
-              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-cyan outline-none transition-all font-almarai text-sm"
+              class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg focus:border-neon-cyan outline-none transition-all font-almarai text-sm text-right"
               placeholder="••••••••"
               required
             />
@@ -46,8 +46,8 @@
 
           <div class="pt-4">
             <CyberButton :loading="auth.loading" variant="cyan" :withLine="false" class="w-full py-4 text-sm group">
-              تفعيل الاتصال
-              <Zap class="w-4 h-4 ml-2 inline group-hover:animate-pulse" />
+              دخول
+              <Zap class="w-4 h-4 mr-2 inline group-hover:animate-pulse" />
             </CyberButton>
           </div>
         </form>
@@ -55,14 +55,14 @@
         <div class="mt-8 pt-8 border-t border-white/5 text-center">
           <p class="text-white/40 font-almarai text-xs">
             ليس لديك حساب بعد؟ 
-            <router-link to="/register" class="text-neon-cyan hover:underline ml-1">إنشاء سجل جديد</router-link>
+            <router-link to="/register" class="text-neon-cyan hover:underline mr-1">إنشاء حساب جديد</router-link>
           </p>
         </div>
       </div>
 
       <div class="mt-6 flex justify-between text-[8px] font-orbitron text-white/20 uppercase tracking-[0.4em]">
-        <span>Encrypted Tunnel: Active</span>
-        <span>Node: 04.13.26</span>
+        <span>System: Online</span>
+        <span>Version: 1.0.0</span>
       </div>
     </div>
   </div>
