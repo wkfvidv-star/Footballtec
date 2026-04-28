@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: oklch(0.8 0.25 190);
+  --color-neon-magenta: oklch(0.7 0.3 330);
+  --color-deep-void: oklch(0.1 0.05 260);
+  --color-glass-white: rgba(255, 255, 255, 0.05);
+  
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-almarai: "Almarai", sans-serif;
+}
+
+:root {
+  background-color: var(--color-deep-void);
+  color: white;
+  font-family: var(--font-almarai), var(--font-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-orbitron);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Cyber Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.neon-border-cyan {
+  border: 1px solid var(--color-neon-cyan);
+  box-shadow: 0 0 15px var(--color-neon-cyan);
+}
+
+.neon-text-cyan {
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 10px var(--color-neon-cyan);
+}
+
+.neon-glow-magenta {
+  filter: drop-shadow(0 0 8px var(--color-neon-magenta));
+}
+
+/* Animations */
+@keyframes breathing {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.animate-pulse-slow {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: rgba(0, 255, 255, 0.1);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}

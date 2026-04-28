@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite does not support native enums, using strings in models
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  name          String?
+  role          String    @default("PLAYER") // PLAYER, COACH, CLUB_ADMIN, SYSTEM_ADMIN
+  
+  // Relationships
+  team          Team?     @relation("TeamPlayers", fields: [teamId], references: [id])
+  teamId        String?
+  managedTeam   Team?     @relation("CoachTeam")
+  club          Club?     @relation(fields: [clubId], references: [id])
+  clubId        String?
+  
+  // Assets
+  metrics       PerformanceStats[]
+  devices       Device[]
+  assignments   TrainingAssignment[]
+  auditLogs     AuditLog[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Club {
+  id        String   @id @default(uuid())
+  name      String
+  teams     Team[]
+  users     User[]
+  plan      String   @default("FREE") // FREE, PRO, ELITE
+  createdAt DateTime @default(now())
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String
+  coach     User     @relation("CoachTeam", fields: [coachId], references: [id])
+  coachId   String   @unique
+  club      Club     @relation(fields: [clubId], references: [id])
+  clubId    String
+  players   User[]   @relation("TeamPlayers")
+  createdAt DateTime @default(now())
+}
+
+model PerformanceStats {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  
+  // Physical Metrics
+  topSpeed        Float
+  avgHeartRate    Int
+  distanceCovered Float
+  sprints         Int
+  
+  // Tactical Metrics
+  passingAccuracy Float
+  interceptions   Int
+  expectedGoals   Float
+  
+  isMatchData     Boolean  @default(false)
+  timestamp       DateTime @default(now())
+}
+
+model Device {
+  id        String   @id @default(uuid())
+  type      String   // GPS_VEST, HR_BELT
+  status    String   @default("IDLE")
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  lastSync  DateTime?
+}
+
+model TrainingAssignment {
+  id          String   @id @default(uuid())
+  title       String
+  videoUrl    String?
+  status      String   @default("PENDING") // PENDING, COMPLETED
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  action    String   // CREATE, UPDATE, DELETE
+  entity    String   // User, Team, Club, etc.
+  entityId  String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  timestamp DateTime @default(now())
+}
