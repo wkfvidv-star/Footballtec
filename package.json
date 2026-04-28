@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "@vueuse/core": "^10.9.0",
     "axios": "^1.15.0",
     "clsx": "^2.1.0",
@@ -24,6 +25,7 @@
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
+    "prisma": "^5.22.0",
     "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.18",
