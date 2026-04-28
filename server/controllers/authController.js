@@ -1,9 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../config/prisma.js'
 import logger from '../config/logger.js'
-
-const prisma = new PrismaClient()
 
 export const register = async (req, res) => {
   const { email, password, name, role } = req.body

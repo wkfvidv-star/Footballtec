@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser'
 import rateLimit from 'express-rate-limit'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
-import { PrismaClient } from '@prisma/client'
+import prisma from './config/prisma.js'
 
 // Config & Utils
 import logger from './config/logger.js'
@@ -27,7 +27,7 @@ const io = new Server(httpServer, {
   }
 })
 
-const prisma = new PrismaClient()
+// Prisma connection managed via config/prisma.js
 
 // 1. Sentry Initialization (First)
 initSentry(app)

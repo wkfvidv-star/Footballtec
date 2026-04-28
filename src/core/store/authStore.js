@@ -26,7 +26,8 @@ export const useAuthStore = defineStore('auth', {
         await api.post('/auth/register', { name, email, password, role })
         return true
       } catch (err) {
-        this.error = err.response?.data?.error || 'فشل التسجيل. يرجى المحاولة لاحقاً.'
+        const detail = err.response?.data?.details ? ` (${err.response.data.details})` : ''
+        this.error = (err.response?.data?.error || 'فشل التسجيل. يرجى المحاولة لاحقاً.') + detail
         return false
       } finally {
         this.loading = false
@@ -51,7 +52,8 @@ export const useAuthStore = defineStore('auth', {
         MonitoringService.logAction('USER_LOGIN_SUCCESS', { role: this.user.role, userId: this.user.id })
         return true
       } catch (err) {
-        this.error = err.response?.data?.error || 'فشل تسجيل الدخول. يرجى التحقق من بياناتك.'
+        const detail = err.response?.data?.details ? ` (${err.response.data.details})` : ''
+        this.error = (err.response?.data?.error || 'فشل تسجيل الدخول. يرجى التحقق من بياناتك.') + detail
         return false
       } finally {
         this.loading = false
