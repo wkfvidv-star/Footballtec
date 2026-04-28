@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:all": "concurrently \"npm run dev\" \"npm run start:server\"",
     "start:server": "cd server && node server.js",
-    "build": "vite build",
+    "build": "npx prisma generate --schema=./server/prisma/schema.prisma && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
