@@ -54,7 +54,6 @@
             >
               <option value="PLAYER">لاعب</option>
               <option value="COACH">مدرب</option>
-              <option value="CLUB_ADMIN">نادي</option>
             </select>
           </div>
 
