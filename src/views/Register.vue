@@ -70,7 +70,7 @@
 
           <div class="md:col-span-2 pt-4">
             <CyberButton :loading="auth.loading" variant="magenta" :withLine="false" class="w-full py-4 text-sm group">
-              تسجيل الحساب
+              إنشاء حساب
               <UserPlus class="w-4 h-4 mr-2 inline" />
             </CyberButton>
           </div>
