@@ -24,10 +24,7 @@
 
         <div class="flex gap-4">
           <router-link to="/login">
-            <CyberButton variant="cyan" :withLine="false" class="scale-90">دخول</CyberButton>
-          </router-link>
-          <router-link to="/register">
-            <CyberButton variant="magenta" :withLine="false" class="scale-90">انضم إلينا</CyberButton>
+            <CyberButton variant="cyan" :withLine="false" class="scale-90">تسجيل الدخول</CyberButton>
           </router-link>
         </div>
       </nav>

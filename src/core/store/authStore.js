@@ -26,9 +26,16 @@ export const useAuthStore = defineStore('auth', {
         await api.post('/auth/register', { name, email, password, role })
         return true
       } catch (err) {
-        let detail = err.response?.data?.details || ''
-        if (typeof detail === 'object') detail = JSON.stringify(detail)
-        this.error = (err.response?.data?.error || 'فشل التسجيل.') + (detail ? ` (${detail})` : '')
+        let errorMsg = 'فشل التسجيل.';
+        if (err.response && err.response.data) {
+          const data = err.response.data;
+          const mainErr = typeof data.error === 'object' ? JSON.stringify(data.error) : (data.error || '');
+          const detail = typeof data.details === 'object' ? JSON.stringify(data.details) : (data.details || '');
+          errorMsg = mainErr + (detail ? ` (${detail})` : '');
+        } else if (err.message) {
+          errorMsg = err.message;
+        }
+        this.error = errorMsg;
         return false
       } finally {
         this.loading = false
@@ -39,7 +46,6 @@ export const useAuthStore = defineStore('auth', {
       this.loading = true
       this.error = null
       try {
-        // Selective clear to prevent stale session data from interfering
         localStorage.removeItem('token')
         localStorage.removeItem('user')
 
@@ -53,9 +59,16 @@ export const useAuthStore = defineStore('auth', {
         MonitoringService.logAction('USER_LOGIN_SUCCESS', { role: this.user.role, userId: this.user.id })
         return true
       } catch (err) {
-        let detail = err.response?.data?.details || ''
-        if (typeof detail === 'object') detail = JSON.stringify(detail)
-        this.error = (err.response?.data?.error || 'فشل تسجيل الدخول.') + (detail ? ` (${detail})` : '')
+        let errorMsg = 'فشل تسجيل الدخول.';
+        if (err.response && err.response.data) {
+          const data = err.response.data;
+          const mainErr = typeof data.error === 'object' ? JSON.stringify(data.error) : (data.error || '');
+          const detail = typeof data.details === 'object' ? JSON.stringify(data.details) : (data.details || '');
+          errorMsg = mainErr + (detail ? ` (${detail})` : '');
+        } else if (err.message) {
+          errorMsg = err.message;
+        }
+        this.error = errorMsg;
         return false
       } finally {
         this.loading = false
